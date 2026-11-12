@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lusso Propiedades | Corredora de Propiedades en Chile</title>
+<meta name="description" content="Lusso Propiedades: gestión de venta y arriendo, asesoría patrimonial inmobiliaria, posesión efectiva y administración de inmuebles en Chile.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#14213d;
+    --navy-2:#1d2d50;
+    --navy-3:#0c1528;
+    --gold:#c6a052;
+    --gold-2:#e2c27f;
+    --cream:#f8f5ef;
+    --ink:#22252b;
+    --muted:#6b7280;
+    --line:#e6e0d4;
+    --radius:14px;
+    --shadow:0 18px 40px -18px rgba(20,33,61,.35);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Montserrat',system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .serif{font-family:'Cormorant Garamond',Georgia,serif}
+  .container{width:min(1200px,92%);margin-inline:auto}
+  .eyebrow{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  h2.title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2rem,4vw,3rem);line-height:1.1;color:var(--navy);margin:.5rem 0 1rem}
+  .lead{color:var(--muted);max-width:620px}
+  section{padding:100px 0}
+  .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.95rem 1.7rem;border-radius:999px;font-weight:600;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid transparent;cursor:pointer;transition:.25s}
+  .btn-gold{background:var(--gold);color:var(--navy-3)}
+  .btn-gold:hover{background:var(--gold-2);transform:translateY(-2px)}
+  .btn-ghost{border-color:rgba(255,255,255,.55);color:#fff}
+  .btn-ghost:hover{background:#fff;color:var(--navy)}
+  .btn-navy{background:var(--navy);color:#fff}
+  .btn-navy:hover{background:var(--navy-2)}
+
+  /* ---------- NAV ---------- */
+  header.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:.3s;padding:18px 0}
+  header.nav.scrolled{background:rgba(12,21,40,.94);backdrop-filter:blur(10px);padding:10px 0;box-shadow:0 8px 30px rgba(0,0,0,.2)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .brand{display:flex;align-items:center;gap:.75rem;color:#fff}
+  .brand svg{width:42px;height:42px}
+  .brand-text{line-height:1}
+  .brand-text b{font-family:'Cormorant Garamond',serif;font-size:1.65rem;letter-spacing:.28em;font-weight:600;display:block}
+  .brand-text small{font-size:.58rem;letter-spacing:.42em;color:var(--gold);font-weight:600}
+  nav.menu ul{display:flex;gap:2rem;list-style:none}
+  nav.menu a{color:rgba(255,255,255,.85);font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;font-weight:500;position:relative}
+  nav.menu a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--gold);transition:.3s}
+  nav.menu a:hover{color:#fff}
+  nav.menu a:hover::after{width:100%}
+  .nav-cta{display:flex;gap:.8rem;align-items:center}
+  .burger{display:none;background:none;border:0;color:#fff;cursor:pointer}
+  .burger svg{width:28px;height:28px}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;color:#fff;overflow:hidden;padding:140px 0 80px}
+  .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=2000&q=75') center/cover;transform:scale(1.06);animation:zoom 18s ease-out forwards}
+  @keyframes zoom{to{transform:scale(1)}}
+  .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,rgba(12,21,40,.94) 0%,rgba(20,33,61,.78) 45%,rgba(20,33,61,.25) 100%)}
+  .hero .container{position:relative;z-index:2}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(2.6rem,6vw,5rem);line-height:1.02;max-width:800px;margin:1rem 0 1.4rem}
+  .hero h1 em{color:var(--gold-2);font-style:italic}
+  .hero p.sub{font-size:1.05rem;color:rgba(255,255,255,.82);max-width:560px;margin-bottom:2.2rem;font-weight:300}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:1rem}
+  .search{margin-top:3.5rem;background:rgba(255,255,255,.97);border-radius:18px;padding:10px;display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:6px;max-width:880px;box-shadow:var(--shadow)}
+  .search label{display:flex;flex-direction:column;padding:.55rem 1rem;border-radius:12px;color:var(--navy)}
+  .search label:not(:last-of-type){border-right:1px solid var(--line)}
+  .search span{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .search select{border:0;background:none;font:inherit;font-weight:600;color:var(--navy);padding:.2rem 0;outline:none;cursor:pointer}
+  .search .btn{border-radius:12px;justify-content:center}
+  .scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;font-size:.65rem;letter-spacing:.3em;color:rgba(255,255,255,.6);text-transform:uppercase}
+
+  /* ---------- STATS ---------- */
+  .stats{background:var(--navy);color:#fff;padding:46px 0}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+  .stats b{font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:var(--gold-2);font-weight:600;display:block;line-height:1}
+  .stats span{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+
+  /* ---------- PROPERTIES ---------- */
+  .props-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:2.5rem}
+  .filters{display:flex;gap:.5rem;flex-wrap:wrap}
+  .chip{padding:.6rem 1.15rem;border-radius:999px;border:1px solid var(--line);background:#fff;font:inherit;font-size:.78rem;font-weight:600;letter-spacing:.05em;color:var(--navy);cursor:pointer;transition:.2s}
+  .chip:hover{border-color:var(--gold)}
+  .chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:28px}
+  .card{background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);transition:.35s;cursor:pointer;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+  .card-img{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--cream)}
+  .card-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+  .card:hover .card-img img{transform:scale(1.07)}
+  .badge{position:absolute;top:14px;left:14px;background:var(--navy);color:#fff;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;padding:.4rem .8rem;border-radius:999px}
+  .badge.arriendo{background:var(--gold);color:var(--navy-3)}
+  .badge.mixto{background:#fff;color:var(--navy)}
+  .loc-tag{position:absolute;bottom:14px;left:14px;color:#fff;font-size:.78rem;font-weight:500;display:flex;align-items:center;gap:.35rem;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+  .card-img::after{content:"";position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(transparent,rgba(0,0,0,.55))}
+  .loc-tag{z-index:2}
+  .card-body{padding:22px 22px 20px;display:flex;flex-direction:column;flex:1}
+  .card-type{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .card h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--navy);line-height:1.15;margin:.35rem 0 .9rem}
+  .feats{display:flex;flex-wrap:wrap;gap:.5rem 1.1rem;font-size:.8rem;color:var(--muted);margin-bottom:1.2rem}
+  .feats span{display:flex;align-items:center;gap:.35rem}
+  .feats svg{width:15px;height:15px;color:var(--gold)}
+  .card-foot{margin-top:auto;padding-top:1rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+  .price{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:700;color:var(--navy);line-height:1}
+  .price small{display:block;font-family:'Montserrat';font-size:.65rem;font-weight:500;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.2rem}
+  .more{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--navy);transition:.25s}
+  .card:hover .more{background:var(--gold);border-color:var(--gold)}
+  .empty{grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted)}
+
+  /* ---------- SERVICES ---------- */
+  .services{background:var(--cream)}
+  .serv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:3rem}
+  .serv{background:#fff;padding:34px 28px;border-radius:var(--radius);border:1px solid var(--line);transition:.3s;position:relative;overflow:hidden}
+  .serv::before{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:var(--gold);transition:.4s}
+  .serv:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .serv:hover::before{width:100%}
+  .serv-icon{width:58px;height:58px;border-radius:14px;background:var(--navy);display:grid;place-items:center;margin-bottom:1.4rem}
+  .serv-icon svg{width:28px;height:28px;color:var(--gold-2)}
+  .serv h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;color:var(--navy);font-weight:600;line-height:1.15;margin-bottom:.7rem}
+  .serv p{font-size:.88rem;color:var(--muted)}
+
+  /* ---------- PROCESS (owners) ---------- */
+  .owners{background:var(--navy-3);color:#fff;position:relative;overflow:hidden}
+  .owners::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border:1px solid rgba(198,160,82,.25);border-radius:50%}
+  .owners-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:center}
+  .owners h2.title{color:#fff}
+  .owners .lead{color:rgba(255,255,255,.7)}
+  .owners-img{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/5;position:relative}
+  .owners-img img{width:100%;height:100%;object-fit:cover}
+  .owners-img .floating{position:absolute;bottom:24px;left:24px;right:24px;background:rgba(255,255,255,.96);color:var(--navy);padding:18px 22px;border-radius:12px;display:flex;gap:1rem;align-items:center}
+  .floating b{font-family:'Cormorant Garamond',serif;font-size:1.3rem;display:block;line-height:1.1}
+  .floating small{color:var(--muted);font-size:.78rem}
+  .steps{list-style:none;margin:2.2rem 0 2.5rem;display:grid;gap:1.4rem}
+  .steps li{display:grid;grid-template-columns:52px 1fr;gap:1.1rem;align-items:start}
+  .steps .n{width:52px;height:52px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold-2)}
+  .steps h4{font-weight:600;font-size:1rem;margin-bottom:.2rem}
+  .steps p{color:rgba(255,255,255,.65);font-size:.88rem}
+
+  /* ---------- SUCCESS ---------- */
+  .success-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:3rem}
+  .succ{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:3/4;color:#fff}
+  .succ img{width:100%;height:100%;object-fit:cover;filter:grayscale(.25)}
+  .succ::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(12,21,40,.92))}
+  .succ .stamp{position:absolute;top:16px;right:16px;z-index:2;border:2px solid var(--gold-2);color:var(--gold-2);font-weight:700;font-size:.72rem;letter-spacing:.24em;padding:.35rem .7rem;border-radius:6px;transform:rotate(-6deg);background:rgba(12,21,40,.55)}
+  .succ .info{position:absolute;bottom:0;left:0;right:0;padding:22px;z-index:2}
+  .succ h4{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;line-height:1.15}
+  .succ p{font-size:.8rem;color:rgba(255,255,255,.75)}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:5rem;align-items:center}
+  .about-card{background:var(--navy);border-radius:20px;padding:48px;color:#fff;position:relative}
+  .about-card .logo-big{width:120px;margin-bottom:1.8rem}
+  .about-card blockquote{font-family:'Cormorant Garamond',serif;font-size:1.7rem;line-height:1.3;font-style:italic;color:#fff}
+  .about-card .sig{margin-top:2rem;display:flex;align-items:center;gap:1rem}
+  .about-card .sig .av{width:54px;height:54px;border-radius:50%;background:var(--gold);color:var(--navy-3);display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700}
+  .about-card .sig b{display:block}
+  .about-card .sig small{color:var(--gold-2);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase}
+  .values{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:2rem}
+  .values div{border-left:2px solid var(--gold);padding-left:1rem}
+  .values b{color:var(--navy);display:block;font-size:.95rem}
+  .values span{font-size:.85rem;color:var(--muted)}
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--cream)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start}
+  .c-item{display:flex;gap:1rem;align-items:center;padding:1.1rem 0;border-bottom:1px solid var(--line)}
+  .c-item .ic{width:48px;height:48px;border-radius:12px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;flex-shrink:0}
+  .c-item .ic svg{width:22px;height:22px;color:var(--gold)}
+  .c-item small{display:block;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .c-item b{color:var(--navy);font-weight:600}
+  form.cform{background:#fff;padding:40px;border-radius:20px;box-shadow:var(--shadow)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.1rem}
+  .field label{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--navy)}
+  .field input,.field select,.field textarea{font:inherit;font-size:.92rem;padding:.85rem 1rem;border:1px solid var(--line);border-radius:10px;background:#fcfbf8;outline:none;transition:.2s}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);background:#fff}
+  .field textarea{min-height:110px;resize:vertical}
+  .form-note{font-size:.75rem;color:var(--muted);margin-top:.8rem}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--navy-3);color:rgba(255,255,255,.7);padding:70px 0 30px;font-size:.88rem}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:3rem}
+  footer h5{color:#fff;font-size:.75rem;letter-spacing:.24em;text-transform:uppercase;margin-bottom:1.2rem}
+  footer ul{list-style:none;display:grid;gap:.6rem}
+  footer a:hover{color:var(--gold-2)}
+  .foot-bottom{margin-top:3.5rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.78rem}
+  .socials{display:flex;gap:.7rem;margin-top:1.4rem}
+  .socials a{width:40px;height:40px;border:1px solid rgba(255,255,255,.2);border-radius:50%;display:grid;place-items:center;transition:.25s}
+  .socials a:hover{background:var(--gold);border-color:var(--gold);color:var(--navy-3)}
+  .socials svg{width:18px;height:18px}
+
+  /* ---------- WHATSAPP FLOAT ---------- */
+  .wa{position:fixed;right:24px;bottom:24px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 10px 30px rgba(37,211,102,.45);transition:.25s}
+  .wa:hover{transform:scale(1.08)}
+  .wa svg{width:32px;height:32px}
+  .wa::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:pulse 2s infinite}
+  @keyframes pulse{from{transform:scale(1);opacity:.8}to{transform:scale(1.6);opacity:0}}
+
+  /* ---------- MODAL ---------- */
+  .modal{position:fixed;inset:0;z-index:100;background:rgba(12,21,40,.75);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px}
+  .modal.open{display:flex;animation:fade .25s}
+  @keyframes fade{from{opacity:0}}
+  .modal-box{background:#fff;border-radius:20px;max-width:960px;width:100%;max-height:92vh;overflow:auto;display:grid;grid-template-columns:1.1fr 1fr;position:relative}
+  .modal-box img{width:100%;height:100%;object-fit:cover;min-height:320px}
+  .modal-body{padding:38px}
+  .modal-body h3{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--navy);line-height:1.1;margin:.4rem 0 1rem}
+  .modal-body p{color:var(--muted);font-size:.92rem;margin-bottom:1.2rem}
+  .modal-body ul{list-style:none;display:grid;gap:.45rem;margin-bottom:1.6rem;font-size:.88rem}
+  .modal-body li{display:flex;gap:.6rem}
+  .modal-body li::before{content:"◆";color:var(--gold);font-size:.7rem;margin-top:.25rem}
+  .modal .close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:0;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.2);cursor:pointer;font-size:1.3rem;color:var(--navy);z-index:2}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:1024px){
+    .serv-grid,.success-grid{grid-template-columns:repeat(2,1fr)}
+    .owners-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:3rem}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .owners-img{aspect-ratio:16/10}
+  }
+  @media (max-width:860px){
+    nav.menu{position:fixed;inset:0 0 0 auto;width:min(320px,85%);background:var(--navy-3);padding:100px 34px;transform:translateX(100%);transition:.35s}
+    nav.menu.open{transform:none}
+    nav.menu ul{flex-direction:column;gap:1.6rem}
+    nav.menu a{font-size:1rem}
+    .burger{display:block;position:relative;z-index:2}
+    .nav-cta .btn{display:none}
+    .search{grid-template-columns:1fr 1fr}
+    .search label:not(:last-of-type){border-right:0}
+    .search .btn{grid-column:1/-1}
+    .stats-grid{grid-template-columns:repeat(2,1fr)}
+    .modal-box{grid-template-columns:1fr}
+    .modal-box img{max-height:280px;min-height:0}
+  }
+  @media (max-width:560px){
+    section{padding:72px 0}
+    .serv-grid,.success-grid,.values,.row,.foot-grid{grid-template-columns:1fr}
+    .grid{grid-template-columns:1fr}
+    .search{grid-template-columns:1fr}
+    .about-card,form.cform{padding:30px}
+  }
+</style>
+</head>
+<body>
+
+<!-- Logo reutilizable (símbolo) -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="lusso-mark" viewBox="0 0 64 64">
+      <rect x="10" y="26" width="12" height="30" fill="currentColor"/>
+      <rect x="25" y="10" width="14" height="46" fill="currentColor"/>
+      <rect x="42" y="20" width="12" height="36" fill="currentColor"/>
+      <path d="M25 10 L32 4 L39 10" fill="none" stroke="#c6a052" stroke-width="2"/>
+      <line x1="32" y1="14" x2="32" y2="56" stroke="#c6a052" stroke-width="2"/>
+      <line x1="6" y1="58" x2="58" y2="58" stroke="#c6a052" stroke-width="2"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#inicio" class="brand" aria-label="Lusso Propiedades">
+      <svg><use href="#lusso-mark"/></svg>
+      <div class="brand-text"><b>LUSSO</b><small>PROPIEDADES</small></div>
+    </a>
+    <nav class="menu" id="menu">
+      <ul>
+        <li><a href="#propiedades">Propiedades</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#propietarios">Propietarios</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contacto" class="btn btn-gold">Contáctanos</a>
+      <button class="burger" id="burger" aria-label="Abrir menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <span class="eyebrow">Corredora de Propiedades · Chile</span>
+    <h1>Tu propiedad, en manos <em>de profesionales</em>.</h1>
+    <p class="sub">Gestión de venta y arriendo, asesoría patrimonial inmobiliaria, posesión efectiva y administración de inmuebles. Asesoría personalizada de principio a fin.</p>
+    <div class="hero-actions">
+      <a href="#propiedades" class="btn btn-gold">Ver propiedades
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#propietarios" class="btn btn-ghost">Quiero publicar mi propiedad</a>
+    </div>
+
+    <form class="search" id="searchForm">
+      <label><span>Operación</span>
+        <select id="sOp"><option value="todas">Todas</option><option value="venta">Venta</option><option value="arriendo">Arriendo</option></select>
+      </label>
+      <label><span>Tipo</span>
+        <select id="sTipo"><option value="todos">Todos</option><option value="departamento">Departamento</option><option value="casa">Casa</option><option value="terreno">Terreno / Parcela</option><option value="oficina">Oficina</option></select>
+      </label>
+      <label><span>Zona</span>
+        <select id="sZona"><option value="todas">Todo Chile</option><option value="rm">Región Metropolitana</option><option value="sur">Sur de Chile</option><option value="otras">Otras regiones</option></select>
+      </label>
+      <button class="btn btn-navy" type="submit">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg> Buscar
+      </button>
+    </form>
+  </div>
+  <div class="scroll-hint">Desliza</div>
+</section>
+
+<!-- ================= STATS ================= -->
+<div class="stats">
+  <div class="container stats-grid">
+    <div><b data-count="13">0</b><span>Propiedades disponibles</span></div>
+    <div><b data-count="5">0</b><span>Regiones donde operamos</span></div>
+    <div><b data-count="4">0</b><span>Áreas de servicio</span></div>
+    <div><b>24/7</b><span>Atención por WhatsApp</span></div>
+  </div>
+</div>
+
+<!-- ================= PROPIEDADES ================= -->
+<section id="propiedades">
+  <div class="container">
+    <div class="props-head reveal">
+      <div>
+        <span class="eyebrow">Portafolio</span>
+        <h2 class="title">Propiedades disponibles</h2>
+        <p class="lead">Departamentos, casas, terrenos y parcelas seleccionados en Santiago y el sur de Chile.</p>
+      </div>
+      <div class="filters" id="filters">
+        <button class="chip active" data-f="todas">Todas</button>
+        <button class="chip" data-f="venta">Venta</button>
+        <button class="chip" data-f="arriendo">Arriendo</button>
+        <button class="chip" data-f="terreno">Terrenos y parcelas</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<!-- ================= SERVICIOS ================= -->
+<section class="services" id="servicios">
+  <div class="container">
+    <div class="reveal" style="text-align:center;display:flex;flex-direction:column;align-items:center">
+      <span class="eyebrow">Lo que hacemos</span>
+      <h2 class="title">Servicios inmobiliarios integrales</h2>
+      <p class="lead">Acompañamos a propietarios, compradores e inversionistas en cada etapa, con un trato cercano y transparente.</p>
+    </div>
+    <div class="serv-grid">
+      <article class="serv reveal">
+        <div class="serv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></div>
+        <h3>Gestión de venta y arriendo</h3>
+        <p>Publicación, difusión, visitas y negociación hasta la firma. Buscamos al comprador o arrendatario ideal para tu propiedad.</p>
+      </article>
+      <article class="serv reveal">
+        <div class="serv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 20h18"/><path d="M6 16V9m6 7V5m6 11v-4"/></svg></div>
+        <h3>Asesoría patrimonial inmobiliaria</h3>
+        <p>Te orientamos para invertir, diversificar y proteger tu patrimonio con decisiones informadas y de alta plusvalía.</p>
+      </article>
+      <article class="serv reveal">
+        <div class="serv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6M10 17h6"/></svg></div>
+        <h3>Posesión efectiva</h3>
+        <p>Te ayudamos con la tramitación de la herencia para que los herederos puedan disponer legalmente de los bienes.</p>
+      </article>
+      <article class="serv reveal">
+        <div class="serv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9m-3 3 3 3m-6 0 2 2"/></svg></div>
+        <h3>Administración de inmuebles</h3>
+        <p>Gestión de pagos de arriendo, cuentas y trámites de tu propiedad. Tú disfrutas de la tranquilidad; nosotros nos ocupamos del resto.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROPIETARIOS ================= -->
+<section class="owners" id="propietarios">
+  <div class="container owners-grid">
+    <div class="owners-img reveal">
+      <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1100&q=75" alt="Interior de departamento luminoso" loading="lazy">
+      <div class="floating">
+        <svg width="44" height="44" style="color:var(--navy);flex-shrink:0"><use href="#lusso-mark"/></svg>
+        <div><b>Arrienda sin preocupaciones</b><small>Evaluación de postulantes y administración incluida</small></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Para propietarios</span>
+      <h2 class="title">¿Quieres vender o arrendar tu propiedad?</h2>
+      <p class="lead">Confía tu propiedad a Lusso Propiedades y déjala en manos de profesionales. Así trabajamos:</p>
+      <ol class="steps">
+        <li><div class="n">1</div><div><h4>Evaluación y tasación</h4><p>Visitamos tu propiedad y definimos juntos el valor y la estrategia comercial.</p></div></li>
+        <li><div class="n">2</div><div><h4>Difusión profesional</h4><p>Fotografía, video y publicación en redes y portales para llegar al público correcto.</p></div></li>
+        <li><div class="n">3</div><div><h4>Selección del cliente ideal</h4><p>Evaluamos a los postulantes para entregarte mayor seguridad en cada operación.</p></div></li>
+        <li><div class="n">4</div><div><h4>Cierre y administración</h4><p>Contratos, entrega y, si lo deseas, administración mensual de tu inmueble.</p></div></li>
+      </ol>
+      <a class="btn btn-gold" target="_blank" rel="noopener" href="https://wa.me/56998701674?text=Hola%20Lusso%20Propiedades%2C%20quiero%20publicar%20mi%20propiedad.">Conversemos por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CASOS DE ÉXITO ================= -->
+<section id="exito">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Confianza que se concreta</span>
+      <h2 class="title">Operaciones cerradas</h2>
+      <p class="lead">Algunas de las propiedades que ya encontraron nuevo dueño o arrendatario gracias a nuestra gestión.</p>
+    </div>
+    <div class="success-grid">
+      <div class="succ reveal"><img loading="lazy" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=700&q=70" alt="Casa con piscina"><div class="stamp">VENDIDA</div><div class="info"><h4>Casa nueva en condominio</h4><p>Alto Macul, La Florida · 4D / 3B · piscina</p></div></div>
+      <div class="succ reveal"><img loading="lazy" src="https://images.unsplash.com/photo-1448630360428-65456885c650?w=700&q=70" alt="Bosque nativo"><div class="stamp">VENDIDA</div><div class="info"><h4>Parcela 5.000 m² bosque nativo</h4><p>Río Chico Alto, Puerto Varas</p></div></div>
+      <div class="succ reveal"><img loading="lazy" src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=700&q=70" alt="Casa de campo"><div class="stamp">VENDIDA</div><div class="info"><h4>Casa de campo con terreno</h4><p>Los Andes, V Región · 3.950 m²</p></div></div>
+      <div class="succ reveal"><img loading="lazy" src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=700&q=70" alt="Departamento moderno"><div class="stamp">ARRENDADO</div><div class="info"><h4>Departamento 2D / 2B</h4><p>Las Condes · Metro Manquehue</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NOSOTROS ================= -->
+<section id="nosotros" style="padding-top:20px">
+  <div class="container about-grid">
+    <div class="reveal">
+      <span class="eyebrow">Quiénes somos</span>
+      <h2 class="title">Asesoría personalizada, de persona a persona</h2>
+      <p class="lead">Lusso Propiedades es una corredora de propiedades chilena liderada por Mariel Cañellas. Trabajamos con propiedades residenciales, comerciales y terrenos desde Santiago hasta el sur de Chile, con un enfoque cercano y honesto, y acompañamos cada operación hasta el final.</p>
+      <div class="values">
+        <div><b>Transparencia</b><span>Información clara en cada etapa del proceso.</span></div>
+        <div><b>Seguridad</b><span>Evaluación rigurosa de compradores y arrendatarios.</span></div>
+        <div><b>Cercanía</b><span>Un solo punto de contacto que conoce tu caso.</span></div>
+        <div><b>Cobertura</b><span>Santiago, Valparaíso, Ñuble, Los Ríos y Los Lagos.</span></div>
+      </div>
+    </div>
+    <div class="about-card reveal">
+      <svg class="logo-big" viewBox="0 0 64 64" style="color:#fff;height:80px"><use href="#lusso-mark"/></svg>
+      <blockquote>“Tú disfruta de la tranquilidad, nosotros nos ocupamos del resto.”</blockquote>
+      <div class="sig">
+        <div class="av">MC</div>
+        <div><b>Mariel Cañellas</b><small>Corredora de Propiedades</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACTO ================= -->
+<section class="contact" id="contacto">
+  <div class="container contact-grid">
+    <div class="reveal">
+      <span class="eyebrow">Contacto</span>
+      <h2 class="title">Conversemos sobre tu propiedad</h2>
+      <p class="lead" style="margin-bottom:1.5rem">Escríbenos y te respondemos a la brevedad para coordinar una visita o una asesoría.</p>
+      <a class="c-item" href="https://wa.me/56998701674" target="_blank" rel="noopener">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div>
+        <div><small>Teléfono / WhatsApp</small><b>+56 9 9870 1674</b></div>
+      </a>
+      <a class="c-item" href="https://www.instagram.com/lusso.propiedades/" target="_blank" rel="noopener">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></div>
+        <div><small>Instagram</small><b>@lusso.propiedades</b></div>
+      </a>
+      <div class="c-item">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+        <div><small>Cobertura</small><b>Chile · Santiago y regiones</b></div>
+      </div>
+    </div>
+
+    <form class="cform reveal" id="cform">
+      <div class="row">
+        <div class="field"><label for="fNombre">Nombre</label><input id="fNombre" required placeholder="Tu nombre"></div>
+        <div class="field"><label for="fFono">Teléfono</label><input id="fFono" type="tel" placeholder="+56 9 ..."></div>
+      </div>
+      <div class="field"><label for="fMotivo">Me interesa</label>
+        <select id="fMotivo">
+          <option>Comprar una propiedad</option>
+          <option>Arrendar una propiedad</option>
+          <option>Vender mi propiedad</option>
+          <option>Arrendar mi propiedad</option>
+          <option>Administración de mi inmueble</option>
+          <option>Asesoría patrimonial</option>
+          <option>Posesión efectiva</option>
+        </select>
+      </div>
+      <div class="field"><label for="fMsg">Mensaje</label><textarea id="fMsg" placeholder="Cuéntanos qué buscas o qué propiedad quieres gestionar..."></textarea></div>
+      <button class="btn btn-gold" type="submit" style="width:100%;justify-content:center">Enviar por WhatsApp</button>
+      <p class="form-note">Al enviar se abrirá WhatsApp con tu mensaje listo para mandar.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a href="#inicio" class="brand"><svg><use href="#lusso-mark"/></svg><div class="brand-text"><b>LUSSO</b><small>PROPIEDADES</small></div></a>
+        <p style="margin-top:1.2rem;max-width:300px">Bienes raíces con asesoría personalizada. Venta, arriendo, administración y asesoría patrimonial en Chile.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/lusso.propiedades/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+          <a href="https://wa.me/56998701674" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.6-.1 1.2z"/></svg></a>
+        </div>
+      </div>
+      <div><h5>Propiedades</h5><ul><li><a href="#propiedades" data-jump="venta">En venta</a></li><li><a href="#propiedades" data-jump="arriendo">En arriendo</a></li><li><a href="#propiedades" data-jump="terreno">Terrenos y parcelas</a></li></ul></div>
+      <div><h5>Servicios</h5><ul><li><a href="#servicios">Venta y arriendo</a></li><li><a href="#servicios">Asesoría patrimonial</a></li><li><a href="#servicios">Posesión efectiva</a></li><li><a href="#servicios">Administración</a></li></ul></div>
+      <div><h5>Contacto</h5><ul><li>+56 9 9870 1674</li><li>@lusso.propiedades</li><li>Chile</li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr"></span> Lusso Propiedades · Bienes Raíces</span>
+      <span>Fotografías referenciales.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp flotante -->
+<a class="wa" href="https://wa.me/56998701674?text=Hola%20Lusso%20Propiedades%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.8-1.1-4.6-4-4.8-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.1.1.6-.1 1.2z"/></svg>
+</a>
+
+<!-- Modal de detalle -->
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="modal-box">
+    <button class="close" id="mClose" aria-label="Cerrar">×</button>
+    <img id="mImg" alt="">
+    <div class="modal-body">
+      <span class="eyebrow" id="mType"></span>
+      <h3 id="mTitle"></h3>
+      <div class="price" id="mPrice" style="margin-bottom:1.2rem"></div>
+      <p id="mDesc"></p>
+      <ul id="mList"></ul>
+      <a class="btn btn-gold" id="mWa" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   DATOS DE PROPIEDADES
+   Edita este arreglo para agregar, quitar o actualizar avisos.
+   Reemplaza "img" por la ruta de tus fotos reales (ej: "fotos/cayumapu.jpg").
+   ============================================================ */
+const U = id => `https://images.unsplash.com/photo-${id}?w=900&q=70`;
+const PROPIEDADES = [
+  { id:'cayumapu', op:'venta', tipo:'terreno', zona:'sur',
+    titulo:'Terreno frente al río Cayumapu', ubicacion:'Cayumapu, Valdivia',
+    precio:'Consultar', sup:'13.000 m²', img:U('1470770841072-f978cf4d019e'),
+    desc:'13.000 m² de naturaleza y privacidad junto al río Cayumapu. Terreno con trabajo e inversión ya realizados.',
+    items:['Terreno limpio y aplanado','Camino acondicionado','Bajada al río y estacionamiento para lancha','Camino de servidumbre inscrito + acceso independiente'] },
+  { id:'chancoyan', op:'venta', tipo:'terreno', zona:'sur',
+    titulo:'Terreno en condominio privado', ubicacion:'Chancoyán Alto, Valdivia',
+    precio:'$55.000.000', sup:'5.000 m²', img:U('1441974231531-c6227db76b6e'),
+    desc:'Excelente oportunidad para invertir o construir la casa de tus sueños, a solo 17 km de Valdivia.',
+    items:['Rol propio','Condominio con cámaras de seguridad 24 h','Luz y agua','Terraplén listo para construir','Estero natural en el terreno'] },
+  { id:'launion', op:'venta', tipo:'terreno', zona:'sur',
+    titulo:'Predio agrícola cercado', ubicacion:'La Unión, Región de Los Ríos',
+    precio:'$32.000.000 / ha', precioNota:'conversable', sup:'Por hectárea', img:U('1500382017468-9049fed747ef'),
+    desc:'Hermoso predio a 16 km de La Unión, cercano al camino asfaltado. Ideal para proyecto agrícola, ganadero o parcela de agrado.',
+    items:['Completamente cercado','Vertiente con punto de captación identificado','Factibilidad eléctrica (poste junto al terreno)','Documentación al día · un solo dueño'] },
+  { id:'altavista', op:'venta', tipo:'departamento', zona:'rm',
+    titulo:'Departamento Condominio Alta Vista II', ubicacion:'Alto Macul, La Florida',
+    precio:'5.500 UF', dorm:3, banos:2, img:U('1545324418-cc1a3fa10c00'),
+    desc:'Elegante departamento con vista despejada, amplio balcón con quincho y entorno de total tranquilidad.',
+    items:['Principal en suite con walking closet','Cocina independiente con logia','Termopanel y aire acondicionado','Piscina, áreas verdes y seguridad 24/7','Gastos comunes aprox. $118.000'] },
+  { id:'altomacul2', op:'venta', tipo:'departamento', zona:'rm',
+    titulo:'Departamento con vista panorámica', ubicacion:'Alto Macul, La Florida',
+    precio:'5.100 UF', dorm:2, banos:2, img:U('1560448204-e02f11c3d0e2'),
+    desc:'Rodeado de áreas verdes, gran piscina y zona de juegos infantiles. Conserjería y seguridad 24/7.',
+    items:['Cocina de concepto abierto','Terraza espaciosa con quincho','Bodega y estacionamiento','Gastos comunes aprox. $110.000'] },
+  { id:'puentealto', op:'venta', tipo:'casa', zona:'rm',
+    titulo:'Casa en barrio residencial', ubicacion:'Puente Alto, cerca de Av. La Florida',
+    precio:'$142.000.000', dorm:3, banos:2, img:U('1568605114967-8130f3a36994'),
+    desc:'Casa de material sólido en pasaje tranquilo y seguro, con excelente conectividad y futuro metro a 5 minutos.',
+    items:['Portón eléctrico · 2 estacionamientos','Patio delantero y trasero','Quincho y aire acondicionado','Segundo dueño, excelentes condiciones'] },
+  { id:'laflorida-arr', op:'arriendo', tipo:'departamento', zona:'rm',
+    titulo:'Departamento con balcón y vista natural', ubicacion:'La Florida · Gerónimo de Alderete',
+    precio:'$700.000', precioNota:'mensual', dorm:3, banos:2, img:U('1493809842364-78817add7ffb'),
+    desc:'Excelente distribución en zona privilegiada de La Florida, con espacio home office.',
+    items:['Principal con baño privado','Cocina independiente con logia','Piscina, gimnasio y salón de eventos','Gastos comunes $170.000'] },
+  { id:'valdovinos', op:'arriendo', tipo:'departamento', zona:'rm',
+    titulo:'Departamento moderno a estrenar', ubicacion:'Metro Carlos Valdovinos',
+    precio:'Consultar', precioNota:'mensual', dorm:1, banos:1, sup:'39 m²', img:U('1522708323590-d24dbb6b0267'),
+    desc:'Nuevo proyecto con terminaciones de calidad y ubicación estratégica. Llegar e instalarse.',
+    items:['Estacionamiento y bodega incluidos','Cocina equipada + refrigerador','Terraza continua','Termopanel y porcelanato'] },
+  { id:'portugal564', op:'mixto', tipo:'departamento', zona:'rm',
+    titulo:'Departamentos con vista · Av. Portugal 564', ubicacion:'Santiago Centro · Metro Santa Isabel',
+    precio:'1.800 UF', precioNota:'o arriendo $300.000', dorm:1, banos:1, img:U('1505691938895-1758d7feb511'),
+    desc:'Tres departamentos disponibles para venta o arriendo, con vista espectacular.',
+    items:['Living con cocina americana','Quincho, lavandería, piscina y sala multiuso','Seguridad 24/7','Gasto común aprox. $65.000 – $85.000'] },
+  { id:'myway', op:'mixto', tipo:'departamento', zona:'rm',
+    titulo:'Departamento Edificio My Way', ubicacion:'Av. Portugal 520 · Santiago Centro',
+    precio:'3.000 UF', precioNota:'o arriendo $500.000', dorm:2, banos:2, img:U('1502672260266-1c1ef2d93688'),
+    desc:'Departamento nuevo tipo mariposa en piso 12, equipado con horno, microondas y mini refrigerador.',
+    items:['Principal con walking closet y baño','Gimnasio, quincho y lavandería','A pasos de metro Santa Isabel','Gasto común aprox. $90.000 – $110.000'] },
+  { id:'oficinas', op:'venta', tipo:'oficina', zona:'rm',
+    titulo:'Dos oficinas con acceso independiente', ubicacion:'Los Militares, Las Condes',
+    precio:'3.500 UF', precioNota:'ambas', sup:'44 m²', banos:2, img:U('1497366216548-37526070297c'),
+    desc:'Oficinas unidas que se pueden dividir, en quinto piso, con excelente ubicación.',
+    items:['3 habitaciones + sala de estar','Cocina pequeña','Estacionamiento techado','Edificio con sala de reuniones'] },
+  { id:'sanesteban', op:'venta', tipo:'terreno', zona:'otras',
+    titulo:'Terreno agrícola con derechos de agua', ubicacion:'San Esteban, V Región',
+    precio:'2 UF / m²', sup:'11.719 m²', img:U('1464822759023-fed622ff2c3b'),
+    desc:'Terreno agrícola en calle El Molino, con dos derechos de agua incluidos en el precio.',
+    items:['11.719 m²','Dos derechos de agua incluidos','Uso agrícola'] },
+  { id:'cobquecura', op:'venta', tipo:'terreno', zona:'otras',
+    titulo:'Terreno entre bosque y playa', ubicacion:'Cobquecura, Ñuble',
+    precio:'$25.000.000', img:U('1475924156734-496f6cac6ec1'),
+    desc:'A solo 10 minutos de la playa y del centro. Ideal para desconectarse o como oportunidad de negocio.',
+    items:['Rol propio','Factibilidad de luz y agua','Entorno seguro de bosque y playa'] },
+];
+
+/* ---------- RENDER ---------- */
+const ico = {
+  bed:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 18V7m0 7h18v4M21 14v-3a3 3 0 0 0-3-3h-7v6"/><circle cx="7" cy="11" r="1.6"/></svg>',
+  bath:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M6 12V6a2 2 0 0 1 4 0"/></svg>',
+  area:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 9V4h5M20 15v5h-5M4 4l6 6m10 10-6-6"/></svg>',
+  pin:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>'
+};
+const tipoTxt = {departamento:'Departamento', casa:'Casa', terreno:'Terreno / Parcela', oficina:'Oficina'};
+const opTxt = {venta:'Venta', arriendo:'Arriendo', mixto:'Venta o arriendo'};
+const grid = document.getElementById('grid');
+
+function render(list){
+  if(!list.length){ grid.innerHTML = '<p class="empty">No hay propiedades con esos filtros por ahora. <a href="#contacto" style="color:var(--gold);font-weight:600">Cuéntanos qué buscas</a> y te avisamos.</p>'; return; }
+  grid.innerHTML = list.map(p => `
+    <article class="card reveal" data-id="${p.id}">
+      <div class="card-img">
+        <img src="${p.img}" alt="${p.titulo}" loading="lazy">
+        <span class="badge ${p.op}">${opTxt[p.op]}</span>
+        <span class="loc-tag">${ico.pin} ${p.ubicacion}</span>
+      </div>
+      <div class="card-body">
+        <span class="card-type">${tipoTxt[p.tipo]}</span>
+        <h3>${p.titulo}</h3>
+        <div class="feats">
+          ${p.dorm ? `<span>${ico.bed} ${p.dorm} dorm.</span>` : ''}
+          ${p.banos ? `<span>${ico.bath} ${p.banos} baño${p.banos>1?'s':''}</span>` : ''}
+          ${p.sup ? `<span>${ico.area} ${p.sup}</span>` : ''}
+        </div>
+        <div class="card-foot">
+          <div class="price"><small>${p.precioNota || (p.op==='arriendo'?'mensual':'valor')}</small>${p.precio}</div>
+          <span class="more"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </div>
+    </article>`).join('');
+  observeReveal();
+}
+
+function applyFilters({op='todas', tipo='todos', zona='todas'} = {}){
+  render(PROPIEDADES.filter(p =>
+    (op==='todas' || p.op===op || p.op==='mixto') &&
+    (tipo==='todos' || p.tipo===tipo) &&
+    (zona==='todas' || p.zona===zona)));
+}
+
+/* chips */
+const chips = document.querySelectorAll('.chip');
+function setChip(f){
+  chips.forEach(c => c.classList.toggle('active', c.dataset.f===f));
+  if(f==='terreno') applyFilters({tipo:'terreno'});
+  else applyFilters({op:f});
+}
+chips.forEach(c => c.addEventListener('click', () => setChip(c.dataset.f)));
+document.querySelectorAll('[data-jump]').forEach(a => a.addEventListener('click', () => setChip(a.dataset.jump)));
+
+/* buscador del hero */
+document.getElementById('searchForm').addEventListener('submit', e => {
+  e.preventDefault();
+  chips.forEach(c => c.classList.remove('active'));
+  applyFilters({op:sOp.value, tipo:sTipo.value, zona:sZona.value});
+  document.getElementById('propiedades').scrollIntoView({behavior:'smooth'});
+});
+
+/* modal */
+const modal = document.getElementById('modal');
+grid.addEventListener('click', e => {
+  const card = e.target.closest('.card'); if(!card) return;
+  const p = PROPIEDADES.find(x => x.id===card.dataset.id);
+  mImg.src = p.img; mImg.alt = p.titulo;
+  mType.textContent = `${tipoTxt[p.tipo]} · ${opTxt[p.op]} · ${p.ubicacion}`;
+  mTitle.textContent = p.titulo;
+  mPrice.innerHTML = `<small>${p.precioNota || 'valor'}</small>${p.precio}`;
+  mDesc.textContent = p.desc;
+  mList.innerHTML = p.items.map(i => `<li>${i}</li>`).join('');
+  mWa.href = 'https://wa.me/56998701674?text=' + encodeURIComponent(`Hola Lusso Propiedades, me interesa: ${p.titulo} (${p.ubicacion}).`);
+  modal.classList.add('open'); document.body.style.overflow='hidden';
+});
+function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
+mClose.onclick = closeModal;
+modal.addEventListener('click', e => { if(e.target===modal) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
+
+/* formulario -> WhatsApp */
+document.getElementById('cform').addEventListener('submit', e => {
+  e.preventDefault();
+  const txt = `Hola Lusso Propiedades, soy ${fNombre.value}${fFono.value ? ' ('+fFono.value+')' : ''}.\nMe interesa: ${fMotivo.value}.\n${fMsg.value}`;
+  window.open('https://wa.me/56998701674?text=' + encodeURIComponent(txt), '_blank');
+});
+
+/* nav */
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40));
+const menu = document.getElementById('menu');
+burger.onclick = () => menu.classList.toggle('open');
+menu.querySelectorAll('a').forEach(a => a.onclick = () => menu.classList.remove('open'));
+
+/* reveal on scroll */
+const io = new IntersectionObserver(es => es.forEach(en => { if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} }), {threshold:.12});
+function observeReveal(){ document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el)); }
+
+/* contadores */
+const cio = new IntersectionObserver(es => es.forEach(en => {
+  if(!en.isIntersecting) return;
+  const el = en.target, end = +el.dataset.count; let n = 0;
+  const t = setInterval(() => { n++; el.textContent = n; if(n>=end) clearInterval(t); }, 1200/end);
+  cio.unobserve(el);
+}), {threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+applyFilters();
+</script>
+</body>
+</html>
